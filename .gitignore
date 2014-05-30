@@ -1,0 +1,3 @@
+venv/
+*.pyc
+django_blog/db.sqlite3

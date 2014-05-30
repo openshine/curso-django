@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block mainblock %}
+
+<form role="form" method="POST">
+  {% csrf_token %}
+  <div class="form-group {% if form.title.errors %}has-error{% endif %}">
+    <label for="id_{{ form.title.html_name }}">{% trans "Post Title" %}</label>
+    <input type="text" class="form-control" id="id_{{ form.title.html_name }}" name="{{ form.title.html_name }}" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+    {% if form.title.errors %}
+      <span class="help-block">{{ form.title.errors.0 }}</span>
+    {% endif %}
+  </div>
+  <div class="form-group {% if form.text.errors %}has-error{% endif %}">
+    <label for="id_{{ form.text.html_name }}">{% trans "Post Content" %}</label>
+    <textarea class="form-control" rows="10" id="id_{{ form.text.html_name }}" name="{{ form.text.html_name }}">{%if form.text.value %}{{ form.text.value }}{% endif %}</textarea>
+    {% if form.text.errors %}
+      <span class="help-block">{{ form.text.errors.0 }}</span>
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+{% endblock %}
